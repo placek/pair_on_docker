@@ -3,8 +3,10 @@ MAINTAINER Paweł Placzyński <placzynski.pawel@gmail.com>
 
 EXPOSE 22
 
-ADD sshd_config /etc/ssh/sshd_config
-ADD tmux_config /home/pair/.tmux.conf
+ADD fs/sshd_config /etc/ssh/sshd_config
+ADD fs/tmux_config /home/pair/.tmux.conf
+ADD fs/profile /home/pair/.profile
+
 RUN \
   apk add --update openssh tmux && \
   ssh-keygen -A && \
@@ -13,4 +15,6 @@ RUN \
   echo 'pair:' | chpasswd && \
   rm -rf /var/cache/apk/*
 
-CMD exec /usr/sbin/sshd -Def /etc/ssh/sshd_config
+CMD \
+  su -c 'tmux new -d -s pair' pair && \
+  exec /usr/sbin/sshd -Def /etc/ssh/sshd_config
