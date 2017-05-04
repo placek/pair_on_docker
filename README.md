@@ -57,15 +57,25 @@ Explanation:
 
 We use the `pair` user on the container. to attach to the container we simply use `ssh`:
 
-    $ ssh -p <port> pair@localhost
+    $ ssh -p <port> pair@localhost -t tmux a
 
 If the `<port>` is different than `22` we need to add it to ssh options, i.e. `-p <port>`.
 
 The pair-programming partner should be able to connect to the container with:
 
-    $ ssh -p <port> pair@<your_ip>
+    $ ssh -p <port> pair@<your_ip> -t tmux a
 
 After launching the container it includes a `tmux` session called `pair`. Every `ssh` connection automaticaly attaches to this session. The result is that you can follow every move of your partner (as well as he/she can).
+
+The `-t tmux a` attaches to an existing tmux session.
+
+Escaping from `tmux` session ends the `ssh` session too.
+
+#### Stoping session
+
+To end session we need to stop the container:
+
+    $ docker stop pair_container
 
 #### Adjusting the image
 

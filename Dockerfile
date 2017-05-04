@@ -5,7 +5,6 @@ EXPOSE 22
 
 ADD fs/sshd_config /etc/ssh/sshd_config
 ADD fs/tmux_config /home/pair/.tmux.conf
-ADD fs/profile /home/pair/.profile
 
 RUN \
   apk add --update openssh tmux && \
@@ -16,5 +15,5 @@ RUN \
   rm -rf /var/cache/apk/*
 
 CMD \
-  su -c 'tmux new -d -s pair' pair && \
+  su -c 'tmux new -d -s pair -c /home/pair' pair && \
   exec /usr/sbin/sshd -Def /etc/ssh/sshd_config
