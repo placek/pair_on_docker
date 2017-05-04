@@ -1,0 +1,5 @@
+new-session
+set-window-option mode-keys vi
+set -g prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
