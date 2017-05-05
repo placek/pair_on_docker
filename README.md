@@ -113,6 +113,16 @@ The `-t tmux a` attaches to an existing tmux session.
 
 Escaping from `tmux` session ends the `ssh` session too.
 
+###### Note
+
+If you are in B::A VPN you can simply use the local DNS:
+
+    $ hostname
+    mysupercomputer
+    $ ssh pair@mysupercomputer.office.binarapps.com -t tmux a
+
+If you are not able to use the VPN you can tunnel the SSH session via (ngrok)[https://ngrok.com].
+
 #### Stoping session
 
 To end session we need to stop the container:
