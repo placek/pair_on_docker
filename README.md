@@ -39,16 +39,16 @@ If for some reason you need/want to build the base image by yourself follow thos
 
 #### Adjusting the image
 
-The current image of `reg01.binarapps.com/placzynskip/pair:latest` is available from B::A private docker registry [here](http://reg01.binarapps.com/repo/tags/placzynskip%252Fpair).
+The current image of `reg01.binarapps.com/placek/pair_on_docker:latest` is available from B::A private docker registry [here](http://reg01.binarapps.com/repo/tags/placek%252Fpair_on_docker)
 
 The image is founded on [`alpine:latest` image](https://hub.docker.com/_/alpine/) ([read more about Alpine linux](https://alpinelinux.org)) and contains only `openssh` and `tmux` packets.
 
-To add more tools you need to write your own image basing on `reg01.binarapps.com/placzynskip/pair:latest`.
+To add more tools you need to write your own image basing on `reg01.binarapps.com/placek/pair_on_docker:latest`.
 
 For example:
 
 ```docker
-FROM reg01.binarapps.com/placzynskip/pair:latest
+FROM reg01.binarapps.com/placek/pair_on_docker:latest
 RUN \
   apk add --update vim git && \
   rm -rf /var/cache/apk/*
@@ -65,7 +65,7 @@ Now we're ready to use the image.
 If you've built the base image by yourself you need to change
 
 ```docker
-FROM reg01.binarapps.com/placzynskip/pair:latest
+FROM reg01.binarapps.com/placek/pair_on_docker:latest
 ```
 
 to
