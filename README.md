@@ -121,7 +121,7 @@ If you are in B::A VPN you can simply use the local DNS:
     mysupercomputer
     $ ssh pair@mysupercomputer.office.binarapps.com -t tmux a
 
-If you are not able to use the VPN you can tunnel the SSH session via (ngrok)[https://ngrok.com].
+If you are not able to use the VPN you can tunnel the SSH session via [ngrok](https://ngrok.com).
 
 #### Stoping session
 
