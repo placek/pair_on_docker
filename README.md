@@ -47,10 +47,12 @@ To add more tools you need to write your own image basing on `reg01.binarapps.co
 
 For example:
 
-    FROM reg01.binarapps.com/placzynskip/pair:latest
-    RUN \
-      apk add --update vim git && \
-      rm -rf /var/cache/apk/*
+```docker
+FROM reg01.binarapps.com/placzynskip/pair:latest
+RUN \
+  apk add --update vim git && \
+  rm -rf /var/cache/apk/*
+```
 
 After that you need to build the image:
 
@@ -62,11 +64,14 @@ Now we're ready to use the image.
 
 If you've built the base image by yourself you need to change
 
-    FROM reg01.binarapps.com/placzynskip/pair:latest
+```docker
+FROM reg01.binarapps.com/placzynskip/pair:latest
+```
 
 to
-
-    FROM pair_base
+```docker
+FROM pair_base
+```
 
 ### Pair programming session
 
@@ -84,11 +89,11 @@ Now is time to lauch container:
     $ docker run --rm --detach --name pair_container --volume <project_path>:/home/pair/shared --publish 22:<port> pair
 
 Explanation:
-`--rm` - we want to remove the container after we stop it.
-`--name pair_container` - to avoid using docker containers ids we name container.
-`--volume <project_path>:/home/pair/shared` - we share the `<project_path>` (the code) as `/home/pair/shared` in the container.
-`--publish 22:<port>` - publish port `22` (sshd) as `<port>` on localhost.
-`--detach` - we don't want the container to be attached to the tty.
+* `--rm` - we want to remove the container after we stop it.
+* `--name pair_container` - to avoid using docker containers ids we name container.
+* `--volume <project_path>:/home/pair/shared` - we share the `<project_path>` (the code) as `/home/pair/shared` in the container.
+* `--publish 22:<port>` - publish port `22` (sshd) as `<port>` on localhost.
+* `--detach` - we don't want the container to be attached to the tty.
 
 #### Attach to the container
 
