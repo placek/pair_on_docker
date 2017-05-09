@@ -1,13 +1,13 @@
 #!/bin/ash
 
 # when no USERS variable set exit with errcode 1
-if [ -z "$USERS" ]
+if [ -z "$@" ]
 then
-   >&2 echo "ERROR: You need to provide LDAP logins in USERS variable!"
+   >&2 echo "ERROR: You need to provide LDAP logins!"
    exit 1
 fi
 
-for user in `echo $USERS | tr "," "\n"`
+for user in $@
 do
   # fetch pubkeys by LDAP user login
   echo "Fetching key for $user..."

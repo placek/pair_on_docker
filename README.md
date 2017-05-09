@@ -86,19 +86,19 @@ Before we start session we need to set up the repository.
 
 Now is time to lauch container:
 
-    $ docker run --rm --detach --name pair_container --env 'USERS=placzynskip,guderskia' --volume <project_path>:/home/pair/shared --publish 22:<port> pair
+    $ docker run --rm --detach --name pair_container --volume <project_path>:/home/pair/shared --publish 22:<port> pair placzynskip guderskia
 
 Or shorter:
 
-    $ docker run --rm -d -n pair_container -e 'USERS=placzynskip,guderskia' -v <project_path>:/home/pair/shared -p 22:<port> pair
+    $ docker run --rm -d -n pair_container -v <project_path>:/home/pair/shared -p 22:<port> pair placzynskip guderskia
 
 Explanation:
+ * `placzynskip guderskia` - the _LDAP_ logins are passed as arguments. Every login is being fetched from [keys.binarapps.com](keys.binarapps.com). If there is no argument passed, then docker container will not be launched and entrypoint script returns error code `1`. The same happens when login has not been found on [keys.binarapps.com](keys.binarapps.com), but the errorcode is `2`.
  * `--rm` - we want to remove the container after we stop it.
  * `--name pair_container` - to avoid using docker containers ids we name container.
  * `--volume <project_path>:/home/pair/shared` - we share the `<project_path>` (the code) as `/home/pair/shared` in the container.
  * `--publish 22:<port>` - publish port `22` (sshd) as `<port>` on localhost.
  * `--detach` - we don't want the container to be attached to the tty.
- * `--env 'USERS=placzynskip,guderskia'` - in the environmental variable `USERS` we give comma-separated LDAP logins of people, who we will be making the session with. Those logins are needed to fetch the publich SSH keys from keys.binarapps.com
 
 #### Attach to the container
 
