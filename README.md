@@ -60,7 +60,7 @@ After that you need to build the image:
 
 Now we're ready to use the image.
 
-###### Note
+###### Note (base image build locally)
 
 If you've built the base image by yourself you need to change
 
@@ -116,7 +116,7 @@ After launching the container it includes a `tmux` session called `pair`. Every 
 
 Escaping from `tmux` session ends the `ssh` session too.
 
-###### Note
+###### Note (VPS host resolving)
 
 If you are within B::A office network (or connected to the VPN) you can simply use the office DNS:
 
@@ -124,7 +124,21 @@ If you are within B::A office network (or connected to the VPN) you can simply u
     mysupercomputer
     $ ssh -p <port> pair@mysupercomputer.office.binarapps.com
 
+###### Note (using external tunneling)
+
 If you are not able to use the VPN you can tunnel the SSH session via [ngrok](https://ngrok.com).
+
+###### Note (known hosts problem)
+
+Since docker containers based on the `reg01.binarapps.com/placek/pair_on_docker:latest` may have different host keys (generated with `ssh-keygen` during building the image) there can appear the problem with caching those keys on every client machine.
+
+By default hosts keys are being kept in `~/.ssh/known_hosts` and they are being appended to this file on very first connenction to host.
+
+After the pair programming session will be launched on docker container every client will add it's host key to `known_hosts`. But later when container bases on other image the host key will differ and `ssh` will cowardly disconnect throwing a warning. We can avoid it by removing the kept key from `~/.ssh/known_hosts`.
+
+On the other hand we can just launch `ssh` in "non-checking-known-host mode", using:
+
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p <port> pair@<your_ip>
 
 #### Stoping session
 
