@@ -104,17 +104,15 @@ Explanation:
 
 We use the `pair` user on the container. To attach to the container we simply use `ssh`:
 
-    $ ssh -p <port> pair@localhost -t tmux
+    $ ssh -p <port> pair@localhost
 
 If the `<port>` is different than `22` we need to add it to ssh options, i.e. `-p <port>`.
 
 The pair-programming partner should be able to connect to the container with:
 
-    $ ssh -p <port> pair@<your_ip> -t tmux a
+    $ ssh -p <port> pair@<your_ip>
 
 After launching the container it includes a `tmux` session called `pair`. Every `ssh` connection automaticaly attaches to this session. The result is that you can follow every move of your partner (as well as he/she can).
-
-The `-t tmux a` attaches to an existing tmux session.
 
 Escaping from `tmux` session ends the `ssh` session too.
 
@@ -124,7 +122,7 @@ If you are within B::A office network (or connected to the VPN) you can simply u
 
     $ hostname
     mysupercomputer
-    $ ssh pair@mysupercomputer.office.binarapps.com -p <port> -t tmux a
+    $ ssh -p <port> pair@mysupercomputer.office.binarapps.com
 
 If you are not able to use the VPN you can tunnel the SSH session via [ngrok](https://ngrok.com).
 
