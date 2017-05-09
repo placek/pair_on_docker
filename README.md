@@ -139,3 +139,4 @@ After that the pair-programming partner has no access to the code.
 1. [`tmux` cheat-sheet](https://meerkat.binarapps.com/kd/guides/tmux-cheatsheet)
 2. [`open_vpn` configuration & usage](https://meerkat.binarapps.com/kd/guides/openvpn)
 3. [`ngrok` usage](https://ngrok.com/docs#getting-started)
+4. [Remote Pair Programming Made Easy with SSH and tmux](http://hamvocke.com/blog/remote-pair-programming-with-tmux/)
