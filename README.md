@@ -86,20 +86,25 @@ Before we start session we need to set up the repository.
 
 Now is time to lauch container:
 
-    $ docker run --rm --detach --name pair_container --volume <project_path>:/home/pair/shared --publish 22:<port> pair
+    $ docker run --rm --detach --name pair_container --env 'USERS=placzynskip,guderskia' --volume <project_path>:/home/pair/shared --publish 22:<port> pair
+
+Or shorter:
+
+    $ docker run --rm -d -n pair_container -e 'USERS=placzynskip,guderskia' -v <project_path>:/home/pair/shared -p 22:<port> pair
 
 Explanation:
-* `--rm` - we want to remove the container after we stop it.
-* `--name pair_container` - to avoid using docker containers ids we name container.
-* `--volume <project_path>:/home/pair/shared` - we share the `<project_path>` (the code) as `/home/pair/shared` in the container.
-* `--publish 22:<port>` - publish port `22` (sshd) as `<port>` on localhost.
-* `--detach` - we don't want the container to be attached to the tty.
+ * `--rm` - we want to remove the container after we stop it.
+ * `--name pair_container` - to avoid using docker containers ids we name container.
+ * `--volume <project_path>:/home/pair/shared` - we share the `<project_path>` (the code) as `/home/pair/shared` in the container.
+ * `--publish 22:<port>` - publish port `22` (sshd) as `<port>` on localhost.
+ * `--detach` - we don't want the container to be attached to the tty.
+ * `--env 'USERS=placzynskip,guderskia'` - in the environmental variable `USERS` we give comma-separated LDAP logins of people, who we will be making the session with. Those logins are needed to fetch the publich SSH keys from keys.binarapps.com
 
 #### Attach to the container
 
-We use the `pair` user on the container. to attach to the container we simply use `ssh`:
+We use the `pair` user on the container. To attach to the container we simply use `ssh`:
 
-    $ ssh -p <port> pair@localhost -t tmux a
+    $ ssh -p <port> pair@localhost -t tmux
 
 If the `<port>` is different than `22` we need to add it to ssh options, i.e. `-p <port>`.
 
