@@ -21,7 +21,7 @@ do
   fi
 
   # append key to authorized_keys
-  su -c "echo $KEY >> /home/pair/.ssh/authorized_keys" pair
+  su -c "echo 'command=\"/usr/bin/tmux attach -t pair\" $KEY' >> /home/pair/.ssh/authorized_keys" pair
 done
 
 # start tmux named session "pair" in deteached mode
