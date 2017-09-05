@@ -80,7 +80,7 @@ Before we start session we need to set up the repository.
     $ cd <project_path>
     $ git checkout -B pair/with_placek
 
-This point is optional, but it will keep the main branches clean and every change made during the session will be able to revert, add seperately or manages someway different at will. 
+This point is optional, but it will keep the main branches clean and every change made during the session will be able to revert, add seperately or manages someway different at will.
 
 #### Lauching container
 
