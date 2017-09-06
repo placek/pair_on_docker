@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM ruby:2.4.1-alpine3.6
 MAINTAINER Paweł Placzyński <placzynski.pawel@gmail.com>
 
 EXPOSE 22

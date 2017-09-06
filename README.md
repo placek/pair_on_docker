@@ -41,7 +41,7 @@ If for some reason you need/want to build the base image by yourself follow thos
 
 The current image of `reg01.binarapps.com/placek/pair_on_docker:latest` is available from B::A private docker registry [here](http://reg01.binarapps.com/repo/tags/placek%252Fpair_on_docker).
 
-The image is founded on [`alpine:latest`](https://hub.docker.com/_/alpine/) image ([more about Alpine linux](https://alpinelinux.org)) and contains only `openssh`, `curl` and `tmux` packets.
+The image is founded on [`ruby:2.4.1-alpine3.6`](https://hub.docker.com/_/ruby/) image ([more about Alpine linux](https://alpinelinux.org)) and contains only `openssh`, `curl`, `tmux` packets (and of course `ruby` 2.4.1).
 
 To add more tools you need to write your own image basing on `reg01.binarapps.com/placek/pair_on_docker:latest`.
 
